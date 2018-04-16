@@ -18,7 +18,7 @@ UDoorController::UDoorController()
 void UDoorController::BeginPlay()
 {
 	Super::BeginPlay();
-	GetOwner()->SetActorRotation(FRotator(0.0f, 90.0f, 0.0f));
+	GetOwner()->SetActorRotation(FRotator(0.0f, -90.0f, 0.0f));
 	
 	
 }
