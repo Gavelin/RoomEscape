@@ -2,6 +2,7 @@
 
 #include "DoorController.h"
 #include "GameFramework/Actor.h"
+#include "Engine/World.h"
 
 // Sets default values for this component's properties
 UDoorController::UDoorController()
@@ -18,9 +19,13 @@ UDoorController::UDoorController()
 void UDoorController::BeginPlay()
 {
 	Super::BeginPlay();
+	DoorControllerActor = GetWorld()->GetFirstPlayerController()->GetPawn();
+	
+}
+
+void UDoorController::OpenDoor()
+{
 	GetOwner()->SetActorRotation(FRotator(0.0f, -90.0f, 0.0f));
-	
-	
 }
 
 
@@ -28,7 +33,8 @@ void UDoorController::BeginPlay()
 void UDoorController::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+	if (PressurePlate->IsOverlappingActor(DoorControllerActor))
+		OpenDoor();
 	// ...
 }
 
